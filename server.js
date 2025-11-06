@@ -2,6 +2,8 @@ var express = require('express');
 var cors = require('cors');
 
 //Database require goes here
+var connectDB = require('./config/db');
+connectDB();
 
 //Router requires here
 var indexRouter = require('./routes/index')
