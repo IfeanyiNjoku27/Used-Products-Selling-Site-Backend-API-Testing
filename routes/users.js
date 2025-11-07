@@ -8,18 +8,13 @@ router.get('/', userController.getAll);
 router.post('/', userController.create);
 
 router.param('id', userController.userByID);
+
 router.get('/:id', userController.getUser);
-router.put('/:id', 
-    authController.requireSign, 
-    userController.hasAuthorization,
-    userController.update);
-router.delete('/:id', 
-    authController.requireSign, 
-    userController.hasAuthorization,
-    userController.remove);
-router.put('/setadmin/:id',
-    authController.logtoken,
-    authController.requireSign,
-    userController.setAdmin);
+
+router.put('/:id', authController.requireSign, userController.hasAuthorization, userController.update);
+
+router.delete('/:id', authController.requireSign, userController.hasAuthorization, userController.remove);
+
+router.put('/setadmin/:id',authController.logtoken, authController.requireSign, userController.setAdmin);
 
 module.exports = router;
