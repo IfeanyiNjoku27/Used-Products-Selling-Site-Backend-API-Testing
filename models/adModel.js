@@ -43,10 +43,10 @@ const AdSchema = new Schema (
             default: 'active',
         },
         //Link to all questions for ad
-        question: [
+        questions: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Questions',
+                ref: 'Question',
             },
         ],
     },
@@ -55,5 +55,4 @@ const AdSchema = new Schema (
     }
 );
 
-const Ad = mongoose.model('Ad', AdSchema);
-export default Ad;
+module.exports = mongoose.model("Ad", AdSchema);

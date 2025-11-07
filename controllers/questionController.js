@@ -1,6 +1,6 @@
 let QuestionModel = require('../models/questionModel');
 
-module.exports.answerQuestion = async function (req, res, next) {
+const answerQuestion = async function (req, res, next) {
   try {
     const { answer } = req.body;
 
@@ -46,4 +46,4 @@ module.exports.answerQuestion = async function (req, res, next) {
   }
 };
 
-export { answerQuestion }
+module.exports = { answerQuestion }

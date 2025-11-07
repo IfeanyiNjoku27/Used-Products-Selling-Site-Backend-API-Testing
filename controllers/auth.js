@@ -1,6 +1,6 @@
 let UserModel = require('../models/users');
 let jwt = require('jsonwebtoken');
-let config = require('../../config/config');
+let config = require('../config/config');
 let { expressjwt } = require('express-jwt');
 
 module.exports.signin = async function (req, res, next) {

@@ -1,14 +1,14 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import {
+const {
   createAd,
   getAds,
   getAdById,
   updateAd,
   disableAd,
-  askQuestion,
-} from '../controllers/adController.js';
-import { protect } from '../middleware/authMiddleWare.js';
+  askQuestion, 
+} = require('../controllers/adController.js');
+const { protect } = require("../middleware/authMiddleware.js");
 
 // Public route to get all active ads
 router.route('/').get(getAds);
@@ -28,4 +28,4 @@ router.route('/:id/disable').put(protect, disableAd);
 // Public route for anonymous users to ask a question
 router.route('/:id/questions').post(askQuestion);
 
-export default router;
+module.exports = router;

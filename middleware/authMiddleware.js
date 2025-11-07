@@ -1,5 +1,7 @@
-import jwt from 'jsonwebtoken';
-import User from '../models/userModel.js';
+const jwt = require('jsonwebtoken');
+const User = require('../models/users');
+const config = require('../config/config');
+
 
 // Middleware to protect routes and identify users
 const protect = async (req, res, next) => {
@@ -15,7 +17,9 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
 
       // Verify the token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, config.SECRETKEY, {
+        algorithms: ['HS512'],
+    });
 
       // Find the user by the ID from the token
       // Attach the user object to the request (minus the password)
@@ -41,4 +45,4 @@ const protect = async (req, res, next) => {
   }
 };
 
-export { protect };
+module.exports = { protect };
