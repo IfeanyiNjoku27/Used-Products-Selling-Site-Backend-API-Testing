@@ -11,7 +11,7 @@ connectDB();
 
 //Route requires
 var indexRouter = require('./routes/index')
-var userRouter = require('./routes/user');
+var userRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var adRouter = require('./routes/adRoute');
 var quesstionRouter = require('./routes/questionRoute');
