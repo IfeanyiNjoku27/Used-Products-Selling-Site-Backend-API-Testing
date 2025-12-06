@@ -1,21 +1,37 @@
 const express = require("express");
 const router = express.Router();
+const { protect } = require("../middleware/authMiddleware.js");
+const Question = require("../models/questionModel");
 
-const {
-  askQuestion,
-  getQuestionsForAd,
-  answerQuestion,
-} = require("../controllers/questionController");
+// CREATE A NEW QUESTION (Anonymous allowed)
+router.post("/", async (req, res) => {
+  try {
+    const { text, ad } = req.body;
 
-const { protect } = require("../middleware/authMiddleware");
+    if (!text || !ad) {
+      return res.status(400).json({ message: "Text and ad ID required" });
+    }
 
-// Anonymous users can ask questions
-router.post("/:adId/ask", askQuestion);
+    const question = await Question.create({ text, ad });
+    res.status(201).json(question);
 
-// Anyone can VIEW questions
-router.get("/:adId", getQuestionsForAd);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server error creating question" });
+  }
+});
 
-// Only ad owner can answer
-router.put("/:questionId/answer", protect, answerQuestion);
+// GET ALL QUESTIONS FOR A SPECIFIC AD
+router.get("/ad/:adId", async (req, res) => {
+  try {
+    const questions = await Question.find({ ad: req.params.adId });
+
+    res.json(questions);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error fetching questions" });
+  }
+});
 
 module.exports = router;
