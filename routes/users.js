@@ -10,7 +10,7 @@ router.post('/', userController.create);
 router.param('id', userController.userByID);
 
 router.get('/:id', userController.getUser);
-
+console.log(userController);
 router.put('/:id', authController.requireSign, userController.hasAuthorization, userController.update);
 
 router.delete('/:id', authController.requireSign, userController.hasAuthorization, userController.remove);

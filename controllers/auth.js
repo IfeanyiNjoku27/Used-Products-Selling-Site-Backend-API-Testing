@@ -1,6 +1,7 @@
 let UserModel = require('../models/users');
 let jwt = require('jsonwebtoken');
 let config = require('../config/config');
+var {expressjwt: expressJwt} = require('express-jwt');
 
 module.exports.signin = async function (req, res, next) {
     try {
@@ -102,4 +103,17 @@ module.exports.updateProfile = async function (req, res, next) {
     } catch (error) {
         next(error);
     }
+};
+
+// Checks if the user has a valid token
+module.exports.requireSign = expressJwt({
+    secret: config.SECRETKEY,
+    algorithms: ["HS512"], 
+    userProperty: 'auth'   // This populates req.auth with the user's ID/username
+});
+
+//  Used in setAdmin route for debugging
+module.exports.logtoken = function(req, res, next) {
+    console.log("Token present:", !!req.auth);
+    next();
 };

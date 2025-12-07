@@ -35,6 +35,6 @@ router.get("/ad/:adId", async (req, res) => {
 });
 
 // Ad owner to answer a question
-router.put("/:questionId/answer", protect, answerQuestion);
+router.put("/:questionId/answer", protect, Question);
 
 module.exports = router;
