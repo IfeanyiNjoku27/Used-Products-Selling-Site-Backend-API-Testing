@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { protect } = require("../middleware/authMiddleware.js");
 const Question = require("../models/questionModel");
+import { answerQuestion } from "../controllers/questionController.js";
 
 // CREATE A NEW QUESTION (Anonymous allowed)
 router.post("/", async (req, res) => {
@@ -35,6 +36,6 @@ router.get("/ad/:adId", async (req, res) => {
 });
 
 // Ad owner to answer a question
-router.put("/:questionId/answer", protect, Question);
+router.put("/:questionId/answer", protect, answerQuestion);
 
 module.exports = router;
