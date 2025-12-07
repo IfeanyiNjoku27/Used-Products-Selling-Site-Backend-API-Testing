@@ -29,7 +29,8 @@ var app = express();
 const allowedOrigins = [
   "http://localhost:5173",                   // frontend (local development)
   "https://used-product-site.onrender.com", // your deployed frontend (update name if needed)
-  "https://used-product-site-pbou.onrender.com"
+  "https://used-product-site-pbou.onrender.com",
+  "https://used-product-site-1tia.onrender.com"
 ];
 
 app.use(
