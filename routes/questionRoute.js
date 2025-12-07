@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { protect } = require("../middleware/authMiddleware.js");
 const Question = require("../models/questionModel");
-const  answerQuestion  = require("../models/questionModel.js");
+const  {answerQuestion}  = require("../controllers/questionController.js");
 
 // CREATE A NEW QUESTION (Anonymous allowed)
 router.post("/", async (req, res) => {
