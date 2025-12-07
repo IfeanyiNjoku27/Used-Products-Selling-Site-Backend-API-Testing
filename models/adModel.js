@@ -34,8 +34,14 @@ const AdSchema = new Schema (
         },
         expirationDate: {
             type: Date,
-            required: true,
+            required: false,
+            default: () => new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days ahead
         },
+       expirationDate: {
+       type: Date,
+       required: false,
+       default: () => new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // 30 days ahead
+},
         //Status for disabling ads
         status: {
             type: String,
